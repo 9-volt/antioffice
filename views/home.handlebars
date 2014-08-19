@@ -1,0 +1,51 @@
+<div class="bs-docs-header" id="content">
+  <div class="container">
+    <h1>Stats</h1>
+    <p>Who's online now</p>
+  </div>
+</div>
+
+<div class="container bs-docs-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bs-docs-section">
+        <p>Add <code>.table-bordered</code> for borders on all sides of the table and cells.</p>
+        <div class="bs-example">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Mac</th>
+              <th>Ip</th>
+              <th>Online for</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each online}}
+            {{#with this}}
+            <tr>
+              <td>{{id}}</td>
+              <td>{{mac}}</td>
+              <td>{{ip}}</td>
+              <td>{{parseSeconds online}}</td>
+            </tr>
+            {{/with}}
+            {{/each}}
+          </tbody>
+        </table>
+        </div>
+        <div class="highlight">
+<pre><code class="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-bordered"</span><span class="nt">&gt;</span>
+...
+<span class="nt">&lt;/table&gt;</span></code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+This is home page. Now is {{timeNow}}
+{{#if showMe}} Me! {{/if}}
