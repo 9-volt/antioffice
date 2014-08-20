@@ -19,7 +19,7 @@ connection = mysql.createConnection
   host: config.dbHost
   user: config.dbUser
   password: config.dbPassword
-connection.query('USE ' + config.dbTable)
+connection.query('USE ' + config.dbName)
 
 app.get '/', (req, res, next)->
   connection.query 'SELECT * FROM online', (err, rows)->
@@ -46,4 +46,4 @@ job = new CronJob '00 * * * * *', ()->
     console.log(data)
 , null, true
 
-app.listen(8080)
+app.listen(config.sitePort)
