@@ -1,9 +1,11 @@
+config         = require('./config')
 express        = require('express')
 bodyParser     = require('body-parser')
 methodOverride = require('method-override')
 cron           = require('cron')
 exphbs         = require('express-handlebars')
 mysql          = require('mysql')
+parser         = require('./helpers/dir300-parser')
 app            = express()
 
 app.use(express.static(__dirname + '/public'))
@@ -35,11 +37,13 @@ app.get '/', (req, res, next)->
 
           return str
 
-
 CronJob = cron.CronJob
 
+# Check for wlan stats each minute
 job = new CronJob '00 * * * * *', ()->
-  console.log(1)
+  parser.getStatusWireless (data)->
+    console.log(new Date())
+    console.log(data)
 , null, true
 
 app.listen(8080)
