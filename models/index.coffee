@@ -17,7 +17,7 @@ fs
     db[model.name] = model
 
 Object.keys(db).forEach (modelName)->
-  if 'associate' in db[modelName]
+  if db[modelName].hasOwnProperty('associate')
     db[modelName].associate(db)
 
 module.exports = lodash.extend
