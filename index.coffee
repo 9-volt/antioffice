@@ -5,7 +5,7 @@ methodOverride = require('method-override')
 cron           = require('cron')
 exphbs         = require('express-handlebars')
 mysql          = require('mysql')
-parser         = require('./helpers/dir300-parser')
+parser         = require("./helpers/#{config.router.toLowerCase()}-parser")
 app            = express()
 
 app.use(express.static(__dirname + '/public'))
@@ -16,10 +16,10 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 connection = mysql.createConnection
-  host: 'localhost'
-  user: 'root'
-  password: 'password'
-connection.query('USE antioffice')
+  host: config.dbHost
+  user: config.dbUser
+  password: config.dbPassword
+connection.query('USE ' + config.dbTable)
 
 app.get '/', (req, res, next)->
   connection.query 'SELECT * FROM online', (err, rows)->
