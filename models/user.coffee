@@ -5,3 +5,4 @@ module.exports = (sequelize, DataTypes)->
     classMethods:
       associate: (models)->
         User.hasMany(models.Device)
+        User.hasMany(models.TimeSummary)

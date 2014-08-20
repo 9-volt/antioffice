@@ -11,3 +11,4 @@ module.exports = (sequelize, DataTypes)->
     classMethods:
       associate: (models)->
         Device.belongsTo(models.User)
+        Device.hasMany(models.TimeTrack)
