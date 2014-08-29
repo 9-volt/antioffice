@@ -19,7 +19,18 @@ module.exports =
         'Content-Type': 'application/x-www-form-urlencoded'
         'Content-Length': postData.length
     , (res)->
-      cb(true)
+      chunks = ''
+
+      res.on 'data', (chunk)->
+        chunks += chunk
+
+      res.on 'end', ->
+        if chunks.indexOf('url=login_fail.php') isnt -1
+          console.log('DIR-300 Login fail')
+          cb()
+        else
+          cb(true)
+
     .on 'error', =>
       console.log('DIR-300 Login error')
       cb()
