@@ -17,6 +17,10 @@ fs
     db[model.name] = model
 
 Object.keys(db).forEach (modelName)->
+  # Keep db instance in each model
+  db[modelName].db = db
+
+  # Check for associations
   if db[modelName].hasOwnProperty('associate')
     db[modelName].associate(db)
 

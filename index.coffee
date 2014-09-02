@@ -1,11 +1,11 @@
 config         = require('./config')
-utils          = require('./helpers/utils')
 express        = require('express')
 bodyParser     = require('body-parser')
 methodOverride = require('method-override')
 cron           = require('cron')
 exphbs         = require('express-handlebars')
-parser         = require("./helpers/#{config.router.toLowerCase()}-parser")
+statsManager   = require('./helpers/stats-manager')
+parser         = require("./parsers/#{config.router.toLowerCase()}-parser")
 db             = require('./models')
 app            = express()
 
@@ -37,17 +37,16 @@ CronJob = cron.CronJob
 
 # Check for wlan stats each minute
 job = new CronJob '00 * * * * *', ()->
-  parser.getStatusWireless (data)->
-    if data?
-      # Delete all old values
-      db.Online.destroy().success ->
-        # Add new values
-        db.Online.bulkCreate utils.assignIds data
+  started_at = Date.now()
 
-    console.log(new Date())
-    console.log(data)
+  parser.getStatusWireless (data)->
+    # if response returned in less than 30 seconds
+    if data? and Date.now() - started_at < 30000
+      statsManager.process(data)
+
 , null, true
 
+# Startup database connection and start app
 db
   .sequelize
   .sync
