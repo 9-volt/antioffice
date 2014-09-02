@@ -75,9 +75,9 @@ module.exports =
               this.timeR.lastIndex = 0
 
               if localMatch?
-                obj.online = localMatch[1]
+                obj.uptime = localMatch[1]
               else
-                obj.online = 0
+                obj.uptime = 0
             else if index % 6 is 2
               obj.mac = match[1]
             else if index % 6 is 3

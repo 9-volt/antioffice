@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes)->
       autoIncrement: false
     mac: DataTypes.STRING(17)
     ip: DataTypes.STRING(15)
-    online: DataTypes.INTEGER
+    uptime: DataTypes.INTEGER
   ,
     createdAt: false
     updatedAt: false

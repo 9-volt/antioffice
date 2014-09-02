@@ -4,7 +4,8 @@ Shows who's in the office right now. Data is gathered from router stats.
 
 ## List of supported routers
 
-* D-Link DIR-300
+* D-Link DIR-300 (v2.02)
+* D-Link DIR-300 (v2.15)
 
 ## Instalation
 
@@ -29,7 +30,7 @@ To pass a option set it as CLI variable: `ROUTER_PASSWORD="somepassword" coffee 
 
 ## Development
 
-If you have a different router than you may want to develop your own parser function. Place the file in `helpers` folder.
-Name your file as `routercode-parser.coffee` where `routercode` is your router type in lowercase.
+If you have a different router than you may want to develop your own parser function. Place the file in `parsers` folder.
+Name your file as `routercode-version.coffee` where `routercode` is your router type in lowercase.
 
 You may want to install nodemon so that server will restart automatically when any file changes.

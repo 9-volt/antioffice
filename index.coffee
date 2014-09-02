@@ -5,7 +5,7 @@ methodOverride = require('method-override')
 cron           = require('cron')
 exphbs         = require('express-handlebars')
 statsManager   = require('./helpers/stats-manager')
-parser         = require("./parsers/#{config.router.toLowerCase()}-parser")
+parser         = require("./parsers/#{config.router.toLowerCase()}")
 db             = require('./models')
 app            = express()
 
