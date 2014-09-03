@@ -15,8 +15,9 @@
             {{#each online}}
             {{#each devices}}
             <tr>
-              {{! ../name inside of if didn't work }}
-              <td>{{../name}}{{#if ../name}}{{else}}Unknown{{/if}}</td>
+              {{#unless @index}}
+              <td rowspan="{{../../devices.length}}">{{#if ../../name}}{{../../../name}}{{else}}Unknown{{/if}}</td>
+              {{/unless}}
               <td>{{title}}</td>
               <td>{{parseSeconds uptime}}</td>
             </tr>
