@@ -4,20 +4,32 @@
     "password": null,
     "database": "database_development",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "sitePort": 8080,
+    "routerLogin": "admin",
+    "routerPassword": "password",
+    "routerModel": "DIR-300-v2.15"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "sitePort": 8080,
+    "routerLogin": "admin",
+    "routerPassword": "password",
+    "routerModel": "DIR-300-v2.15"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "sitePort": 8080,
+    "routerLogin": "admin",
+    "routerPassword": "password",
+    "routerModel": "DIR-300-v2.15"
   }
 }

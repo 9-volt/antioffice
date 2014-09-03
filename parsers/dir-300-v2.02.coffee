@@ -1,4 +1,4 @@
-config   = require('../config')
+config   = require('../config/config.json').production
 http     = require('http')
 _        = require('lodash')
 

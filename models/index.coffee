@@ -1,9 +1,9 @@
-config    = require('../config')
+config    = require('../config/config.json').production
 fs        = require('fs')
 path      = require('path')
 Sequelize = require('sequelize')
 lodash    = require('lodash')
-sequelize = new Sequelize config.dbName, config.dbUser, config.dbPassword,
+sequelize = new Sequelize config.database, config.username, config.password,
   sync:
     force: false
 db        = {}

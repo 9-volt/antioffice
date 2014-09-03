@@ -1,11 +1,11 @@
-config         = require('./config')
+config         = require('./config/config.json').production
 express        = require('express')
 bodyParser     = require('body-parser')
 methodOverride = require('method-override')
 cron           = require('cron')
 exphbs         = require('express-handlebars')
 statsManager   = require('./helpers/stats-manager')
-parser         = require("./parsers/#{config.router.toLowerCase()}")
+parser         = require("./parsers/#{config.routerModel.toLowerCase()}")
 db             = require('./models')
 app            = express()
 
@@ -18,11 +18,11 @@ app.set('view engine', 'handlebars');
 
 app.get '/', (req, res, next)->
   db.Online.findAll()
-    .done (err, rows)->
+    .done (err, online)->
       res.render 'home',
         pageTitle: 'Antioffice'
         showMe: true
-        online: if not err then rows else []
+        online: if not err then online else []
         helpers:
           timeNow: ->
             new Date()
