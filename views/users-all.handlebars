@@ -1,21 +1,15 @@
-<div class="bs-docs-header" id="content">
-  <div class="container">
-    <h1>Stats</h1>
-    <p>Who's online now</p>
-  </div>
-</div>
-
 <div class="container bs-docs-container">
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <p>List of online devices in office</p>
+        <p>List of all users</p>
         <table class="table table-bordered">
           <thead>
             <tr>
               <th>User</th>
               <th>Device</th>
-              <th>Online for</th>
+              <th>Last uptime</th>
+              <th>Last time was online</th>
             </tr>
           </thead>
           <tbody>
@@ -26,6 +20,7 @@
               <td>{{../name}}{{#if ../name}}{{else}}Unknown{{/if}}</td>
               <td>{{title}}</td>
               <td>{{parseSeconds uptime}}</td>
+              <td>{{to}}</td>
             </tr>
             {{/each}}
             {{/each}}
@@ -35,9 +30,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-This is home page. Now is {{timeNow}}
-{{#if showMe}} Me! {{/if}}

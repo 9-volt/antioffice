@@ -1,0 +1,14 @@
+.navbar{
+  margin: 0 0 20px 0;
+  background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#563d7c), to(#6f5499));
+  background-image: -webkit-linear-gradient(#563d7c 0%, #6f5499 100%);
+  background-image: -moz-linear-gradient(#563d7c 0%, #6f5499 100%);
+  background-image: -o-linear-gradient(#563d7c 0%, #6f5499 100%);
+  background-image: linear-gradient(#563d7c 0%, #6f5499 100%);
+  color: white;
+}
+
+.bs-docs-nav .navbar-brand, .bs-docs-nav .navbar-nav>li>a{
+  color: white;
+}
+

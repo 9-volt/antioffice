@@ -1,0 +1,30 @@
+<div class="container bs-docs-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bs-docs-section">
+        <p>List of online devices in office</p>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Device</th>
+              <th>Online for</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each online}}
+            {{#each devices}}
+            <tr>
+              {{! ../name inside of if didn't work }}
+              <td>{{../name}}{{#if ../name}}{{else}}Unknown{{/if}}</td>
+              <td>{{title}}</td>
+              <td>{{parseSeconds uptime}}</td>
+            </tr>
+            {{/each}}
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
