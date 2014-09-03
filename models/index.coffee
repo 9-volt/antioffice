@@ -4,6 +4,7 @@ path      = require('path')
 Sequelize = require('sequelize')
 lodash    = require('lodash')
 sequelize = new Sequelize config.database, config.username, config.password,
+  logging: false
   sync:
     force: false
 db        = {}

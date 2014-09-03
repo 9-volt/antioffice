@@ -9,36 +9,28 @@
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <p>Add <code>.table-bordered</code> for borders on all sides of the table and cells.</p>
-        <div class="bs-example">
+        <p>List of online devices in office</p>
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Mac</th>
-              <th>Ip</th>
+              <th>User</th>
+              <th>Device</th>
               <th>Online for</th>
             </tr>
           </thead>
           <tbody>
             {{#each online}}
-            {{#with this}}
+            {{#each devices}}
             <tr>
-              <td>{{id}}</td>
-              <td>{{mac}}</td>
-              <td>{{ip}}</td>
+              {{! ../name inside of if didn't work }}
+              <td>{{../name}}{{#if ../name}}{{else}}Unknown{{/if}}</td>
+              <td>{{title}}</td>
               <td>{{parseSeconds uptime}}</td>
             </tr>
-            {{/with}}
+            {{/each}}
             {{/each}}
           </tbody>
         </table>
-        </div>
-        <div class="highlight">
-<pre><code class="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-bordered"</span><span class="nt">&gt;</span>
-...
-<span class="nt">&lt;/table&gt;</span></code></pre>
-        </div>
       </div>
     </div>
   </div>
