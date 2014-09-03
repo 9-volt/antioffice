@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes)->
-  TimeTrack = sequelize.define 'TimeTrack',
+  TimeSession = sequelize.define 'TimeSession',
     from: DataTypes.DATE
     to: DataTypes.DATE
   ,
     classMethods:
       associate: (models)->
-        TimeTrack.belongsTo(models.Device)
+        TimeSession.belongsTo(models.Device)
