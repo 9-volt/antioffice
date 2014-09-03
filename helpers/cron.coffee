@@ -12,7 +12,7 @@ module.exports =
     job = new CronJob '00 * * * * *', ()->
       started_at = Date.now()
 
-      parser.getStatusWireless (data)->
+      parser.getWirelessConnections (data)->
         # Process if data is fresh and no other processing takes place
         if not CronJobFlag and data? and Date.now() - started_at < 30000
           CronJobFlag = true

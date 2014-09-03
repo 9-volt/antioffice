@@ -41,7 +41,7 @@ module.exports =
     logInRequest.write(postData)
     logInRequest.end()
 
-  getStatusWireless: (cb)->
+  getWirelessConnections: (cb)->
     this.logIn (loggedIn = false)=>
       if not loggedIn
         return cb(null)

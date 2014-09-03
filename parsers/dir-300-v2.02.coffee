@@ -42,7 +42,7 @@ module.exports =
 
   timeR: /\(\'(\d+)\'\)/gi
 
-  getStatusWireless: (cb)->
+  getWirelessConnections: (cb)->
     this.logIn (loggedIn = false)=>
       if not loggedIn
         return cb(null)
