@@ -11,6 +11,9 @@ module.exports =
     # First tick when app starts
     @tick()
 
+    parser.getDevicesData (data)->
+      console.log data
+
   busy: false # Limit to 1 task at a time
 
   tick: ()->
@@ -18,7 +21,7 @@ module.exports =
 
     parser.getWirelessConnections (data)=>
       # Process if data is fresh and no other processing takes place
-      if not @bucy and data? and Date.now() - started_at < 30000
+      if not @busy and data? and Date.now() - started_at < 30000
         @busy = true
         statsManager.process data, =>
           @busy = false
