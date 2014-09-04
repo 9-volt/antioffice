@@ -15,7 +15,7 @@
           <tbody>
             {{#each online}}
             {{#each devices}}
-            <tr>
+            <tr {{#eq ../../clientMac mac}}class="warning"{{/eq}}>
               {{#unless @index}}
               <td rowspan="{{../../devices.length}}">{{#if ../../name}}{{../../../name}}{{else}}Unknown{{/if}}</td>
               {{/unless}}

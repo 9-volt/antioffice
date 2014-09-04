@@ -1,5 +1,6 @@
 db             = require('../models')
 utils          = require('../helpers/utils')
+session        = require('../helpers/session')
 
 getData = (cb, filter=->true)->
   # Get all users and devices
@@ -33,6 +34,7 @@ getData = (cb, filter=->true)->
                     title: device.title
                     uptime: Math.ceil((timeSessions[0].to - timeSessions[0].from)/1000)
                     to: timeSessions[0].to
+                    mac: device.mac
 
                 barrier()
           )(user, device)
@@ -40,18 +42,26 @@ getData = (cb, filter=->true)->
 module.exports =
 
   online: (req, res, next)->
+    clientIp = req.connection.remoteAddress
+
     getData (data)->
       res.render 'users-online',
         pageTitle: 'Antioffice'
         online: data
+        clientMac: session.getMacByIp(clientIp)
+        clientIsLocal: session.isLocalIp(clientIp)
     , (timeSession)->
       new Date() - timeSession.to < 5 * 60 * 1000
 
   all: (req, res)->
+    clientIp = req.connection.remoteAddress
+
     getData (data)->
       res.render 'users-all',
         pageTitle: 'Antioffice'
         online: data
+        clientMac: session.getMacByIp(clientIp)
+        clientIsLocal: session.isLocalIp(clientIp)
     , (f)->
       true
 
