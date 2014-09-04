@@ -31,3 +31,5 @@ db
     else
       app.listen(config.sitePort)
       Cron.start()
+
+      console.log 'App started on port ' + config.sitePort
