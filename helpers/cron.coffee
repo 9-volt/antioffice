@@ -1,6 +1,7 @@
 config         = require('../config/config.json').production
 cron           = require('cron')
 statsManager   = require('../helpers/stats-manager')
+session        = require('../helpers/session')
 parser         = require("../parsers/#{config.routerModel.toLowerCase()}")
 
 module.exports =
@@ -10,9 +11,6 @@ module.exports =
 
     # First tick when app starts
     @tick()
-
-    parser.getDevicesData (data)->
-      console.log data
 
   busy: false # Limit to 1 task at a time
 
@@ -25,3 +23,9 @@ module.exports =
         @busy = true
         statsManager.process data, =>
           @busy = false
+
+    parser.getDevicesData (data)=>
+      # Process if data is fresh
+      console.log data
+      if data? and Date.now() - started_at < 3000
+        session.cacheUserData data

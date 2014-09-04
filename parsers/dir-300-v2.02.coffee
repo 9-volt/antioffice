@@ -92,3 +92,7 @@ module.exports =
       .on 'error', (e)->
         console.log('Got error when trying to get wireless status')
         cb(null)
+
+  # Not implemented
+  getDevicesData: (cb)->
+    cb(null)
