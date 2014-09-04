@@ -26,6 +26,5 @@ module.exports =
 
     parser.getDevicesData (data)=>
       # Process if data is fresh
-      console.log data
       if data? and Date.now() - started_at < 3000
         session.cacheUserData data
