@@ -14,12 +14,18 @@
           <tbody>
             {{#each online}}
             {{#each devices}}
-            <tr {{#eq ../../clientMac mac}}class="warning"{{/eq}}>
+            <tr>
               {{#unless @index}}
-              <td rowspan="{{../../devices.length}}">{{#if ../../name}}{{../../../name}}{{else}}Unknown{{/if}}</td>
+              <td rowspan="{{../../devices.length}}" {{#if ../../isActive}}class="warning"{{/if}}>{{#if ../../name}}{{../../../name}}{{else}}Unknown{{/if}}</td>
               {{/unless}}
-              <td>{{title}}</td>
-              <td>{{parseSeconds uptime}}</td>
+
+              {{#eq ../../clientMac mac}}
+                <td class="warning">{{title}}</td>
+                <td class="warning">{{parseSeconds uptime}}</td>
+              {{else}}
+                <td>{{title}}</td>
+                <td>{{parseSeconds uptime}}</td>
+              {{/eq}}
             </tr>
             {{/each}}
             {{/each}}

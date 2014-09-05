@@ -15,21 +15,24 @@
           <tbody>
             {{#each online}}
             {{#each devices}}
-            <tr {{#eq ../../clientMac mac}}class="warning"{{/eq}}>
+            <tr>
               {{#unless @index}}
-                {{#eq ../../../clientMac ../mac}}
-                  <td rowspan="{{../../../devices.length}}" class="editable"><form><input type="text" value="{{../../../name}}" data-type="users" data-id="{{../../../id}}"></form><span class="value">{{#if ../../../name}}{{../../../../name}}{{else}}Unknown{{/if}}</span></td>
+                {{#if ../../isActive}}
+                  <td rowspan="{{../../../devices.length}}" class="editable warning"><form><input type="text" value="{{../../../name}}" data-type="users" data-id="{{../../../id}}"></form><span class="value">{{#if ../../../name}}{{../../../../name}}{{else}}Unknown{{/if}}</span></td>
                 {{else}}
                   <td rowspan="{{../../../devices.length}}">{{#if ../../../name}}{{../../../../name}}{{else}}Unknown{{/if}}</td>
-                {{/eq}}
+                {{/if}}
               {{/unless}}
+
               {{#eq ../../clientMac mac}}
-              <td class="editable"><form><input type="text" value="{{title}}" data-type="devices" data-id="{{../id}}"></form><span class="value">{{title}}</span></td>
+                <td class="editable warning"><form><input type="text" value="{{title}}" data-type="devices" data-id="{{../id}}"></form><span class="value">{{title}}</span></td>
+                <td class="warning">{{parseSeconds uptime}}</td>
+                <td class="warning">{{to}}</td>
               {{else}}
-              <td>{{title}}</td>
+                <td>{{title}}</td>
+                <td>{{parseSeconds uptime}}</td>
+                <td>{{to}}</td>
               {{/eq}}
-              <td>{{parseSeconds uptime}}</td>
-              <td>{{to}}</td>
             </tr>
             {{/each}}
             {{/each}}

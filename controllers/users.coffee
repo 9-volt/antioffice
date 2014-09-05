@@ -41,16 +41,25 @@ getData = (cb, filter=->true)->
                 barrier()
           )(user, device)
 
+markActiveClient = (data, mac)->
+  for k, v of data
+    v.isActive = v.devices.reduce (prev, curr)->
+      return if curr.mac is mac then true else prev
+    , false
+
 module.exports =
 
   online: (req, res, next)->
     clientIp = req.connection.remoteAddress
 
     getData (data)->
+      mac = session.getMacByIp(clientIp)
+      markActiveClient(data, mac)
+
       res.render 'users-online',
         pageTitle: 'Antioffice'
         online: data
-        clientMac: session.getMacByIp(clientIp)
+        clientMac: mac
         clientIsLocal: session.isLocalIp(clientIp)
     , (timeSession)->
       new Date() - timeSession.to < 5 * 60 * 1000
@@ -59,10 +68,13 @@ module.exports =
     clientIp = req.connection.remoteAddress
 
     getData (data)->
+      mac = session.getMacByIp(clientIp)
+      markActiveClient(data, mac)
+
       res.render 'users-all',
         pageTitle: 'Antioffice'
         online: data
-        clientMac: session.getMacByIp(clientIp)
+        clientMac: mac
         clientIsLocal: session.isLocalIp(clientIp)
     , (f)->
       true
