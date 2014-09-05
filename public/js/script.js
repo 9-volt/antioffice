@@ -1,7 +1,7 @@
 $(function(){
   var editableBlock = null
 
-  $('body').on('click', '.editable', function(ev){
+  $('body').on('click touchstart', '.editable', function(ev){
     ev.preventDefault()
     ev.stopPropagation()
 
@@ -15,7 +15,7 @@ $(function(){
     closeBlock($(this).closest('.editable'))
   })
 
-  $('body').on('click', function(ev){
+  $('body').on('click touchstart', function(ev){
     if (editableBlock !== null) {
       closeBlock(editableBlock)
     }
