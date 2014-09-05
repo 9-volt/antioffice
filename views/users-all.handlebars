@@ -2,42 +2,50 @@
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <p>List of all users</p>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Device</th>
-              <th>Last uptime</th>
-              <th>Last time was online</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each online}}
-            {{#each devices}}
-            <tr>
-              {{#unless @index}}
-                {{#if ../../isActive}}
-                  <td rowspan="{{../../../devices.length}}" class="editable warning"><form><input type="text" value="{{../../../name}}" data-type="users" data-id="{{../../../id}}"></form><span class="value">{{#if ../../../name}}{{../../../../name}}{{else}}Unknown{{/if}}</span></td>
-                {{else}}
-                  <td rowspan="{{../../../devices.length}}">{{#if ../../../name}}{{../../../../name}}{{else}}Unknown{{/if}}</td>
-                {{/if}}
-              {{/unless}}
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading">List of all users</div>
+          <div class="panel-body">
+            <p>In order to be able to edit your user and device record open this page from local network using <a href="http://coder.local/users">coder.local</a> url. If a cell is highlighted then you can edit its contents by clicking on it.</p>
+          </div>
 
-              {{#eq ../../clientMac mac}}
-                <td class="editable warning"><form><input type="text" value="{{title}}" data-type="devices" data-id="{{../id}}"></form><span class="value">{{title}}</span></td>
-                <td class="warning">{{parseSeconds uptime}}</td>
-                <td class="warning">{{to}}</td>
-              {{else}}
-                <td>{{title}}</td>
-                <td>{{parseSeconds uptime}}</td>
-                <td>{{to}}</td>
-              {{/eq}}
-            </tr>
-            {{/each}}
-            {{/each}}
-          </tbody>
-        </table>
+          <!-- Table -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Device</th>
+                <th>Last uptime</th>
+                <th>Last time was online</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each online}}
+              {{#each devices}}
+              <tr>
+                {{#unless @index}}
+                  {{#if ../../isActive}}
+                    <td rowspan="{{../../../devices.length}}" class="editable warning"><form><input type="text" value="{{../../../name}}" data-type="users" data-id="{{../../../id}}"></form><span class="value">{{#if ../../../name}}{{../../../../name}}{{else}}Unknown{{/if}}</span></td>
+                  {{else}}
+                    <td rowspan="{{../../../devices.length}}">{{#if ../../../name}}{{../../../../name}}{{else}}Unknown{{/if}}</td>
+                  {{/if}}
+                {{/unless}}
+
+                {{#eq ../../clientMac mac}}
+                  <td class="editable warning"><form><input type="text" value="{{title}}" data-type="devices" data-id="{{../id}}"></form><span class="value">{{title}}</span></td>
+                  <td class="warning">{{parseSeconds uptime}}</td>
+                  <td class="warning">{{to}}</td>
+                {{else}}
+                  <td>{{title}}</td>
+                  <td>{{parseSeconds uptime}}</td>
+                  <td>{{to}}</td>
+                {{/eq}}
+              </tr>
+              {{/each}}
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
