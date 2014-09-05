@@ -63,7 +63,7 @@ module.exports =
           console.log('DIR-300 Log out fail')
           cb()
         else
-          console.log('DIR-300 Log out success')
+          # console.log('DIR-300 Log out success')
           cb(true)
 
     .on 'error', =>
