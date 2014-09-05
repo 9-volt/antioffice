@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes)->
         Device.hasMany(models.TimeSession)
 
       findOrCreateDevice: (data, cb = ->)->
+        # Normalize mac address
+        data.mac = data.mac.toUpperCase()
+
         Device.find({where: {mac: data.mac}})
           .error (error)->
             cb error

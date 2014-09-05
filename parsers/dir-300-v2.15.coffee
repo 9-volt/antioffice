@@ -104,8 +104,8 @@ module.exports =
 
             if entries?.length? > 0
               data = entries.map (e)->
-                mac: e.macaddr
-                uptime: e.uptime
+                mac: e.macaddr[0].toUpperCase() # Normalize mac address
+                uptime: e.uptime[0]
 
             @logOut()
             return cb(data)
@@ -164,7 +164,7 @@ module.exports =
                     if entry2.hostname?[0]? and entry2.macaddr?[0]? and entry2.hostid?[0]?
                       data.push
                         title: entry2.hostname[0]
-                        mac: entry2.macaddr[0]
+                        mac: entry2.macaddr[0].toUpperCase() # Normalize mac address
                         ip: '192.168.0.' + entry2.hostid[0]
 
 
@@ -173,7 +173,7 @@ module.exports =
                 if entry.hostname?[0]? and entry.macaddr?[0]? and entry.ipaddr?[0]?
                   data.push
                     title: entry.hostname[0]
-                    mac: entry.macaddr[0]
+                    mac: entry.macaddr[0].toUpperCase() # Normalize mac address
                     ip: entry.ipaddr[0]
 
             @logOut()

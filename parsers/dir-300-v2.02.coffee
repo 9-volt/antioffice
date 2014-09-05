@@ -79,7 +79,7 @@ module.exports =
               else
                 obj.uptime = 0
             else if index % 6 is 2
-              obj.mac = match[1]
+              obj.mac = match[1].toUpperCase() # Normalize mac address
             else if index % 6 is 3
               obj.ip = match[1]
             else if index % 6 is 0
