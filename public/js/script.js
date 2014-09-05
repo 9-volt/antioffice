@@ -1,7 +1,6 @@
 $(function(){
   var editableBlock = null
 
-
   $('body').on('click', '.editable', function(ev){
     ev.preventDefault()
     ev.stopPropagation()
@@ -19,7 +18,6 @@ $(function(){
   $('body').on('click', function(ev){
     if (editableBlock !== null) {
       closeBlock(editableBlock)
-      editableBlock = null
     }
   })
 
@@ -57,5 +55,8 @@ $(function(){
 
     $input.hide()
     $value.show()
+
+    // Clear cache
+    editableBlock = null
   }
 })
