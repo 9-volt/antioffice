@@ -1,11 +1,11 @@
 {
-  "name": "antioffice-stats",
-  "title": "Antioffice Stats",
+  "name": "antioffice",
+  "title": "Antioffice Page",
   "version": "0.0.1",
   "private": true,
   "author": {
     "name": "bumbu alex",
-    "company": "antioffice"
+    "company": "9volt"
   },
   "dependencies": {
     "body-parser": "^1.6.5",
