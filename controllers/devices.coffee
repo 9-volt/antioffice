@@ -17,6 +17,7 @@ module.exports =
           if isSameClient?
             device.title = req.body.value
             device.save()
+            res.send('OK')
           else
             res.status(404).send('You are not authorized to alter this entity')
     else

@@ -83,6 +83,7 @@ module.exports =
           if isSameClient?
             user.name = req.body.value
             user.save()
+            res.send('OK')
           else
             res.status(404).send('You are not authorized to alter this entity')
     else
