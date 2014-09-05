@@ -12,3 +12,14 @@
   color: white;
 }
 
+.table {}
+.table .editable {}
+.table .editable input {
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid #ccc;
+  margin: -3px -5px;
+  padding: 2px 4px;
+  display: none;
+}
+.table .editable .value {}

@@ -29,12 +29,14 @@ getData = (cb, filter=->true)->
                   data[user.id] ?=
                     name: user.name
                     devices: []
+                    id: user.id
 
                   data[user.id].devices.push
                     title: device.title
                     uptime: Math.ceil((timeSessions[0].to - timeSessions[0].from)/1000)
                     to: timeSessions[0].to
                     mac: device.mac
+                    id: device.id
 
                 barrier()
           )(user, device)
@@ -65,3 +67,23 @@ module.exports =
     , (f)->
       true
 
+  post: (req, res)->
+    if req.params?.id? and req.params.id > 0 and req.body?.value?
+      db.User.find({where: {id: req.params.id}, include: [db.Device]})
+        .error (err)->
+          res.status(404).send('DB error')
+        .success (user)->
+          mac = session.getMacByIp(req.connection.remoteAddress)
+
+          ## Check if client tries to edit its own name
+          isSameClient = user.devices.reduce (prev, curr)->
+            return if curr.mac is mac then true else prev
+          , false
+
+          if isSameClient?
+            user.name = req.body.value
+            user.save()
+          else
+            res.status(404).send('You are not authorized to alter this entity')
+    else
+      res.status(404).send('ID parameter or Value argument is wrong')

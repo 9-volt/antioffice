@@ -156,7 +156,6 @@ module.exports =
             else if result?.postxml?.module?[1]?.service?[0] is 'RUNTIME.INF.LAN-1'
               lanXml = result?.postxml?.module?[1]?.runtime?[0]
 
-            # console.log dhcpXml
             if dhcpXml?.entry?
               for entry in dhcpXml.entry
                 if entry?.staticleases?[0]?.entry?
