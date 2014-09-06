@@ -37,3 +37,9 @@ module.exports =
       count--
       cb() if count is 0
       return count
+
+  nocache: (req, res, next)->
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
+    res.header('Expires', '-1')
+    res.header('Pragma', 'no-cache')
+    next()
